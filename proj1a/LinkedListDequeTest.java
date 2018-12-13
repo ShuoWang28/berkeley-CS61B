@@ -42,6 +42,7 @@ public class LinkedListDequeTest {
 		boolean passed = checkEmpty(true, lld1.isEmpty());
 
 		lld1.addFirst("front");
+		lld1.printDeque();
 		
 		// The && operator is the same as "and" in Python.
 		// It's a binary operator that returns true if both arguments true, and false otherwise.
@@ -56,6 +57,8 @@ public class LinkedListDequeTest {
 
 		System.out.println("Printing out deque: ");
 		lld1.printDeque();
+		String test = lld1.getRecursive(2);
+		System.out.println(test);
 
 		printTestStatus(passed);
 
@@ -83,6 +86,7 @@ public class LinkedListDequeTest {
 		printTestStatus(passed);
 
 	}
+
 
 	public static void main(String[] args) {
 		System.out.println("Running tests.\n");
