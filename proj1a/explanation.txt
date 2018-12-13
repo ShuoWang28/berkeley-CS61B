@@ -1,1 +1,7 @@
 explanation for late submit
+The following results are for entertainment only. The views and opinions expressed therein are those of the individual speakers and do not necessarily represent the views and opinions of Sony Pictures Home Entertainment, Sony Pictures Entertainment or any of their respective affiliates or employees.
+explanation.txt (0.0/0.001)
+Searching for explanation.txt in /autograder/submission/proj1a/
+
+* The explanation.txt you included is not long enough. Please provide additional information.
+* Your final score will be zero until you do this.
