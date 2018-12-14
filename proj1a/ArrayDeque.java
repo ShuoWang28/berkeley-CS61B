@@ -85,6 +85,9 @@ public class ArrayDeque<T> {
      * returns null. */
     public T removeFirst() {
         size--;
+        if ((float)size / items.length < 0.25 && items.length > 8) {
+            resize(items.length / 2);
+        }
         if (nextFirst == items.length) {
             T val = items[0];
             items[0] = null;
@@ -94,9 +97,6 @@ public class ArrayDeque<T> {
         T val = items[nextFirst + 1];
         items[nextFirst + 1] = null;
         nextFirst = nextFirst + 1;
-        if ((float)size / items.length < 0.25 && items.length > 8) {
-            resize(items.length / 2);
-        }
         return val;
     }
 
@@ -105,6 +105,9 @@ public class ArrayDeque<T> {
      * returns null. */
     public T removeLast() {
         size--;
+        if (size / items.length < 0.25 && items.length > 8) {
+            resize(items.length / 2);
+        }
         if (nextLast == 0) {
             T val = items[items.length];
             items[items.length] = null;
@@ -114,9 +117,6 @@ public class ArrayDeque<T> {
         T val = items[nextLast - 1];
         items[nextLast - 1] = null;
         nextLast = nextLast - 1;
-        if (size / items.length < 0.25 && items.length > 8) {
-            resize(items.length / 2);
-        }
         return val;
     }
     /** Gets the item at the given index, where 0 is the front,
@@ -137,31 +137,21 @@ public class ArrayDeque<T> {
      * @param capacity int
      * */
     private void resize(int capacity) {
-        T[] a = (T[]) new Object[capacity];
+        T[] temp = (T[]) new Object[capacity];
         if (capacity > items.length) {
-            System.arraycopy(items, nextFirst + 1, a, capacity / 2,
-                    items.length - nextFirst - 1);
-            System.arraycopy(items, 0, a, capacity / 2 + items.length - nextFirst - 1 ,
-                    nextLast);
-            nextFirst = capacity / 2 - 1;
-            nextLast = capacity - 1;
-            items = a;
-            return;
-            } else {
-            if (nextLast > nextFirst || nextLast == 0) {
-                System.arraycopy(items, nextFirst + 1, a, capacity / 2, size);
-                nextFirst = capacity / 2 - 1;
-                nextLast = capacity;
-                items = a;
-                return;
-            } else {
-                System.arraycopy(items, 0, a, 0, nextLast);
-                System.arraycopy(items, nextFirst + 1, a,
-                        capacity - size + nextLast, size - nextLast);
-                nextFirst = nextFirst - capacity / 2;
-                items = a;
-                return;
-            }
+            System.arraycopy(items, nextFirst + 1, temp, 1, size - 1 - nextFirst );
+            System.arraycopy(items, 0, temp, size - nextFirst, nextLast);
+            nextLast = size;
+        } else {
+           if (nextLast > nextFirst) {
+               System.arraycopy(items, nextFirst + 1, temp, 1,nextLast - nextFirst - 1);
+           } else {
+               System.arraycopy(items, nextFirst + 1, temp, 1, items.length - 1 - nextFirst);
+               System.arraycopy(items, 0, temp, items.length - nextFirst, nextLast - 1);
+           }
+           nextLast = size + 2;
         }
+        nextFirst = 0;
+        items = temp;
     }
 }
