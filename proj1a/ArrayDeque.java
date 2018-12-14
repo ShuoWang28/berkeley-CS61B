@@ -144,12 +144,12 @@ public class ArrayDeque<T> {
             nextLast = size;
         } else {
             if (nextLast > nextFirst) {
-                 System.arraycopy(items, nextFirst + 1, temp, 1, nextLast - nextFirst - 1);
+                 System.arraycopy(items, nextFirst + 1, temp, 1, size);
             } else {
                  System.arraycopy(items, nextFirst + 1, temp, 1, items.length - 1 - nextFirst);
-                 System.arraycopy(items, 0, temp, items.length - nextFirst, nextLast - 1);
+                 System.arraycopy(items, 0, temp, items.length - nextFirst, nextLast );
             }
-            nextLast = size + 2;
+            nextLast = size + 1;
         }
         nextFirst = 0;
         items = temp;
