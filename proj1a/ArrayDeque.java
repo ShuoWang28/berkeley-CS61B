@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
      * */
     public void addFirst(T item) {
         size = size + 1;
-        if (size == items.length) {
+        if (size == items.length && items.length > 8) {
             resize(size * 2);
         }
         items[nextFirst] = item;
@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
      * */
     public void addLast(T item) {
         size++;
-        if (size == items.length) {
+        if (size == items.length && items.length > 8) {
             resize(size * 2);
         }
         items[nextLast] = item;
