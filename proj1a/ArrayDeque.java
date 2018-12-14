@@ -24,7 +24,7 @@ public class ArrayDeque<T> {
      * */
     public void addFirst(T item) {
         size = size + 1;
-        if (size == items.length && items.length > 8) {
+        if (size == items.length) {
             resize(size * 2);
         }
         items[nextFirst] = item;
@@ -40,7 +40,7 @@ public class ArrayDeque<T> {
      * */
     public void addLast(T item) {
         size++;
-        if (size == items.length && items.length > 8) {
+        if (size == items.length) {
             resize(size * 2);
         }
         items[nextLast] = item;
@@ -84,19 +84,17 @@ public class ArrayDeque<T> {
      * If no such item exists,
      * returns null. */
     public T removeFirst() {
+        T val = get(0);
         size--;
+        int first = nextFirst + 1;
+        if (first >= items.length) {
+            first = 0;
+        }
+        items[first] = null;
+        nextFirst = first;
         if ((float)size / items.length < 0.25 && items.length > 8) {
             resize(items.length / 2);
         }
-        if (nextFirst == items.length) {
-            T val = items[0];
-            items[0] = null;
-            nextFirst = 0;
-            return val;
-        }
-        T val = items[nextFirst + 1];
-        items[nextFirst + 1] = null;
-        nextFirst = nextFirst + 1;
         return val;
     }
 
@@ -104,19 +102,17 @@ public class ArrayDeque<T> {
      * If no such item exists,
      * returns null. */
     public T removeLast() {
+        T val = get(size - 1);
         size--;
-        if (size / items.length < 0.25 && items.length > 8) {
+        int last = nextLast - 1;
+        if (last < 0) {
+            last = items.length - 1;
+        }
+        items[last] = null;
+        nextLast = last;
+        if ((float)size / items.length < 0.25 && items.length > 8) {
             resize(items.length / 2);
         }
-        if (nextLast == 0) {
-            T val = items[items.length];
-            items[items.length] = null;
-            nextLast = items.length;
-            return val;
-        }
-        T val = items[nextLast - 1];
-        items[nextLast - 1] = null;
-        nextLast = nextLast - 1;
         return val;
     }
     /** Gets the item at the given index, where 0 is the front,
@@ -124,13 +120,11 @@ public class ArrayDeque<T> {
      * @param index integer
     /** If no such item exists, returns null. Must not alter the deque! */
     public T get(int index) {
-        if (nextLast > nextFirst) {
-            return items[nextFirst + index + 1];
+        int i = nextFirst + 1 + index;
+        if (i > items.length - 1) {
+            i = i - items.length;
         }
-        if (nextFirst + index < items.length) {
-            return items[nextFirst + index];
-        }
-        return items[nextFirst + index - 1 - items.length];
+        return items[i];
     }
 
     /** Resize the underlying array to the target capacity.
