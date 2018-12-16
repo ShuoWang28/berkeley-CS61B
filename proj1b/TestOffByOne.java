@@ -6,12 +6,11 @@ public class TestOffByOne {
 
     @Test
     public void testequalchars() {
-        OffByOne obo = new OffByOne();
-        assertTrue(obo.equalChars('a', 'b'));
-        assertTrue(obo.equalChars('b', 'a'));
-        assertFalse(obo.equalChars('a', 'h'));
-        assertFalse(obo.equalChars('A', 'b'));
-        assertTrue(obo.equalChars('&', '%'));
-        assertFalse(obo.equalChars('@', '%'));
+        assertTrue(offByOne.equalChars('a', 'b'));
+        assertTrue(offByOne.equalChars('b', 'a'));
+        assertFalse(offByOne.equalChars('a', 'h'));
+        assertFalse(offByOne.equalChars('A', 'b'));
+        assertTrue(offByOne.equalChars('&', '%'));
+        assertFalse(offByOne.equalChars('@', '%'));
     }
 }
