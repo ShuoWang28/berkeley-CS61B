@@ -8,17 +8,10 @@ public class TestOffByOne {
     public void testequalchars() {
         OffByOne obo = new OffByOne();
         assertTrue(obo.equalChars('a', 'b'));
+        assertTrue(obo.equalChars('b', 'a'));
         assertFalse(obo.equalChars('a', 'h'));
-        assertFalse(obo.equalChars('A', 'h'));
+        assertFalse(obo.equalChars('A', 'b'));
         assertTrue(obo.equalChars('&', '%'));
-    }
-
-    @Test
-    public void testNequalchars() {
-        OffByN ob2 = new OffByN(2);
-        assertTrue(ob2.equalChars('a', 'c'));
-        assertFalse(ob2.equalChars('a', 'd'));
-        assertFalse(ob2.equalChars('A', 'd'));
-        assertTrue(ob2.equalChars('&', '$'));
+        assertFalse(obo.equalChars('@', '%'));
     }
 }
