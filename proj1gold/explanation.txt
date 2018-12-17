@@ -1,0 +1,10 @@
+In the above declaration and instantiation, lst is of type "List61B". This is called the "static type"
+However, the objects themselves have types as well. the object that lst points to is of type SLList. 
+Although this object is intrinsically an SLList (since it was declared as such), it is also a List61B, 
+because of the “is-a” relationship we explored earlier. But, because the object itself was instantiated 
+using the SLList constructor, We call this its "dynamic type".
+Aside: the name “dynamic type” is actually quite semantic in its origin! Should lst be reassigned to 
+point to an object of another type, say a AList object, lst’s dynamic type would now be AList and not
+SLList! It’s dynamic because it changes based on the type of the object it’s currently referring to.
+When Java runs a method that is overriden, it searches for the appropriate method signature in it's
+dynamic type and runs it.
