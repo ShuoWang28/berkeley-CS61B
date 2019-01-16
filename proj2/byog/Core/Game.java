@@ -33,29 +33,10 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-
         WorldGenerator worldMap = new WorldGenerator();
 
         worldMap.setSeed(Long.parseLong(input.replaceAll("\\D", "")));
-        TERenderer ter = new TERenderer();
-        ter.initialize(WIDTH, HEIGHT);
 
-        // initialize tiles
-        TETile[][] world = new TETile[WIDTH][HEIGHT];
-        for (int x = 0; x < WIDTH; x += 1) {
-            for (int y = 0; y < HEIGHT; y += 1) {
-                world[x][y] = Tileset.NOTHING;
-            }
-        }
-
-        worldMap.AddRooms(world);
-
-        worldMap.smoothing(world);
-
-        worldMap.AddLockedDoor(world);
-
-        ter.renderFrame(world);
-
-        return world;
+        return worldMap.startWorld();
     }
 }

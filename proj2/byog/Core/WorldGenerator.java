@@ -13,14 +13,35 @@ public class WorldGenerator {
     public static final int roomCount = RandomUtils.uniform(RANDOM, 10, 20);
 
 
-    /**
-     * Position class.
-     */
-
     public void setSeed(long i) {
         this.SEED = i;
     }
 
+    public TETile[][] startWorld() {
+        TERenderer ter = new TERenderer();
+        ter.initialize(WIDTH, HEIGHT);
+
+        // initialize tiles
+        TETile[][] world = new TETile[WIDTH][HEIGHT];
+        for (int x = 0; x < WIDTH; x += 1) {
+            for (int y = 0; y < HEIGHT; y += 1) {
+                world[x][y] = Tileset.NOTHING;
+            }
+        }
+
+        AddRooms(world);
+
+        smoothing(world);
+
+        AddLockedDoor(world);
+
+        ter.renderFrame(world);
+
+        return world;
+    }
+    /**
+     * Position class.
+     */
     public static class Position {
         private int px;
         private int py;
