@@ -17,7 +17,7 @@ public class WorldGenerator {
      * Position class.
      */
 
-    public void setSeed(int i) {
+    public void setSeed(long i) {
         this.SEED = i;
     }
 

@@ -36,7 +36,7 @@ public class Game {
 
         WorldGenerator worldMap = new WorldGenerator();
 
-        worldMap.setSeed(Integer.parseInt(input.replaceAll("\\D", "")));
+        worldMap.setSeed(Long.parseLong(input.replaceAll("\\D", "")));
         TERenderer ter = new TERenderer();
         ter.initialize(WIDTH, HEIGHT);
 
