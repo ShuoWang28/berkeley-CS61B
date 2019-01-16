@@ -1,0 +1,19 @@
+tural language, or by writing a computer program that implements the procedure,
+as shown at right for Euclid’s algorithm for finding the greatest common divisor of
+two numbers, a variant of which was devised
+over 2,300 years ago. If you are not familiar
+with Euclid’s algorithm, you are encouraged
+to work Exercise 1.1.24 and Exercise
+1.1.25, perhaps after reading Section 1.1. In
+this book, we use computer programs to describe
+algorithms. One important reason for
+doing so is that it makes easier the task of
+checking whether they are finite, deterministic,
+and effective, as required. But it is also
+important to recognize that a program in a
+particular language is just one way to express
+an algorithm. The fact that many of the algorithms
+in this book have been expressed
+in multiple programming languages over the
+past several decades reinforces the idea that each algorithm is a method suitable for
+implementation on any computer in any programming language.
