@@ -1,6 +1,8 @@
 package byog.Core;
 import byog.TileEngine.*;
 
+import java.util.Random;
+
 
 public class WorldGeneratorTest {
     TERenderer ter = new TERenderer();
@@ -9,26 +11,17 @@ public class WorldGeneratorTest {
     public static final int HEIGHT = 40;
 
     public static void main(String[] args) {
-        // initialize the tile rendering engine with a window of size WIDTH x HEIGHT
-        TERenderer ter = new TERenderer();
-        ter.initialize(WIDTH, HEIGHT);
 
-        // initialize tiles
-        TETile[][] world = new TETile[WIDTH][HEIGHT];
-        for (int x = 0; x < WIDTH; x += 1) {
-            for (int y = 0; y < HEIGHT; y += 1) {
-                world[x][y] = Tileset.NOTHING;
-            }
-        }
+        Game game = new Game();
+        Random RANDOM = new Random(511643);
+        System.out.println(RandomUtils.uniform(new Random(31643), 15, 20));
+        System.out.println(RandomUtils.uniform(new Random(31644), 15, 20));
+        System.out.println(RandomUtils.uniform(new Random(31645), 15, 20));
 
-        WorldGenerator.Room r1 = new WorldGenerator.Room(new WorldGenerator.Position(20,20), 5, 5);
-        WorldGenerator.Room r2 = new WorldGenerator.Room(new WorldGenerator.Position(25,10), 5, 5);
-        r1.drawRoom(world);
-        r2.drawRoom(world);
-        r1.drawTunnel(r2,world);
-        System.out.println(r1.intersect(r2));
+        TETile[][] worldState = game.playWithInputString("n3164322222222s");
+        TETile[][] worldStat3 = game.playWithInputString("n3164322222222s");
+        TETile[][] worldSta33 = game.playWithInputString("n3164322222222s");
 
-        ter.renderFrame(world);
 
     }
 

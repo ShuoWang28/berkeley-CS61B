@@ -2,24 +2,29 @@ package byog.Core;
 import byog.TileEngine.*;
 
 import java.util.Random;
-import java.util.concurrent.TimeoutException;
+
 
 public class WorldGenerator {
     public static final int WIDTH = 80;
     public static final int HEIGHT = 40;
 
-    private static long SEED = 1;
-    public static final Random RANDOM = new Random(SEED);
-    public static final int roomCount = RandomUtils.uniform(RANDOM, 10, 20);
+    private static long SEED;
+    public static Random RANDOM;
+    public static int roomCount;
 
 
-    public void setSeed(long i) {
+    public final void setSeed(long i) {
         this.SEED = i;
+        this.RANDOM = new Random(SEED);
+        this.roomCount = RandomUtils.uniform(RANDOM, 15, 20);
     }
 
     public TETile[][] startWorld() {
-        //TERenderer ter = new TERenderer();
-        //ter.initialize(WIDTH, HEIGHT);
+
+        System.out.println(SEED + " " + roomCount);
+
+        TERenderer ter = new TERenderer();
+        ter.initialize(WIDTH, HEIGHT);
 
         // initialize tiles
         TETile[][] world = new TETile[WIDTH][HEIGHT];
@@ -35,7 +40,7 @@ public class WorldGenerator {
 
         AddLockedDoor(world);
 
-        //ter.renderFrame(world);
+        ter.renderFrame(world);
 
         return world;
     }
@@ -77,9 +82,9 @@ public class WorldGenerator {
      * Use left upper corner Position and width and lenght(height in our map).
      */
     public static class Room {
-        private Position RoomLoc;
-        private int width;
-        private int length;
+        private final int width;
+        private final int length;
+        private final Position RoomLoc;
         private boolean isolated = true;
 
         public Room(Position p, int w, int l) {
@@ -227,10 +232,9 @@ public class WorldGenerator {
 
     public static void AddRooms (TETile[][] world) {
         /** Add main room */
-        int x = RandomUtils.uniform(RANDOM, 2, WIDTH - 10);
-        int y = RandomUtils.uniform(RANDOM, 10, HEIGHT - 2);
-        Position entrance = new Position(x, y);
-        Room r1 = new Room(entrance);
+
+        Room r1 = new Room();
+        r1.RoomLoc.printPosition();
         r1.isolated = false;
         r1.drawRoom(world);
 
@@ -268,31 +272,6 @@ public class WorldGenerator {
                 break;
             }
         }
-    }
-
-
-
-
-    public static void main(String[] args) {
-        // initialize the tile rendering engine with a window of size WIDTH x HEIGHT
-        TERenderer ter = new TERenderer();
-        ter.initialize(WIDTH, HEIGHT);
-
-        // initialize tiles
-        TETile[][] world = new TETile[WIDTH][HEIGHT];
-        for (int x = 0; x < WIDTH; x += 1) {
-            for (int y = 0; y < HEIGHT; y += 1) {
-                world[x][y] = Tileset.NOTHING;
-            }
-        }
-
-        AddRooms(world);
-
-        smoothing(world);
-
-        AddLockedDoor(world);
-
-        ter.renderFrame(world);
     }
 
 }
