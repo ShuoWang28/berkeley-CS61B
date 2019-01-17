@@ -21,10 +21,8 @@ public class WorldGenerator {
 
     public TETile[][] startWorld() {
 
-        System.out.println(SEED + " " + roomCount);
-
-        TERenderer ter = new TERenderer();
-        ter.initialize(WIDTH, HEIGHT);
+        //TERenderer ter = new TERenderer();
+        //ter.initialize(WIDTH, HEIGHT);
 
         // initialize tiles
         TETile[][] world = new TETile[WIDTH][HEIGHT];
@@ -40,7 +38,7 @@ public class WorldGenerator {
 
         AddLockedDoor(world);
 
-        ter.renderFrame(world);
+        //ter.renderFrame(world);
 
         return world;
     }
@@ -234,7 +232,6 @@ public class WorldGenerator {
         /** Add main room */
 
         Room r1 = new Room();
-        r1.RoomLoc.printPosition();
         r1.isolated = false;
         r1.drawRoom(world);
 
