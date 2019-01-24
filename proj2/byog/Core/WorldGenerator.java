@@ -51,7 +51,7 @@ public class WorldGenerator implements Serializable {
     }
 
     public static WorldGenerator loadWorld() {
-        File f = new File("./world.ser");
+        File f = new File("./world.txt");
         if (f.exists()) {
             try {
                 FileInputStream fs = new FileInputStream(f);
@@ -76,7 +76,7 @@ public class WorldGenerator implements Serializable {
     }
 
     public void saveWorld() {
-        File f = new File("./world.ser");
+        File f = new File("./world.txt");
         try {
             if (!f.exists()) {
                 f.createNewFile();
@@ -85,7 +85,7 @@ public class WorldGenerator implements Serializable {
             ObjectOutputStream os = new ObjectOutputStream(fs);
             os.writeObject(this);
             os.close();
-            System.exit(0);
+            //System.exit(0);
         }  catch (FileNotFoundException e) {
             System.out.println("file not found");
             System.exit(0);
@@ -114,8 +114,15 @@ public class WorldGenerator implements Serializable {
 
         while (!gameOver) {
             while (StdDraw.hasNextKeyTyped()) {
-                String action = String.valueOf(StdDraw.nextKeyTyped());
-                player.move(action);
+                char action = Character.toLowerCase(StdDraw.nextKeyTyped());
+                if (action != ':') {
+                    player.move(action);
+                } else {
+                    while (StdDraw.hasNextKeyTyped()) {
+                        char action2 = StdDraw.nextKeyTyped();
+                        player.moveToSave(action2);
+                    }
+                }
             }
             displayMouseLocation();
             ter.renderFrame(world);
@@ -248,24 +255,29 @@ public class WorldGenerator implements Serializable {
         }
 
         /** use keyboard to make a move */
-        public void move(String action) {
+        public void move(char Action) {
+            char action = Character.toLowerCase(Action);
             switch (action) {
-                case "w" :
+                case 'w' :
                     moveHelper(new Position(loc.getPx(), loc.getPy() + 1));
                     break;
-                case "a" :
+                case 'a' :
                     moveHelper(new Position(loc.getPx() - 1, loc.getPy()));
                     break;
-                case "s" :
+                case 's' :
                     moveHelper(new Position(loc.getPx(), loc.getPy() - 1));
                     break;
-                case "d" :
+                case 'd' :
                     moveHelper(new Position(loc.getPx() + 1, loc.getPy()));
                     break;
-                case ":q" :
-                    saveWorld();
-                    break;
                 default:
+            }
+        }
+
+        public void moveToSave(char Action) {
+            char action = Character.toLowerCase(Action);
+            if (action == 'q') {
+                saveWorld();
             }
         }
 

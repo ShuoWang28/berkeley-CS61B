@@ -43,24 +43,24 @@ public class Game {
         while (true) {
             if (StdDraw.hasNextKeyTyped()) {
                 char choice = StdDraw.nextKeyTyped();
-                action = String.valueOf(choice);
-                menuOption(action);
+                menuOption(choice);
             }
         }
     }
 
-    private void menuOption(String action) {
+    private void menuOption(char Action) {
+        char action = Character.toLowerCase(Action);
         switch (action) {
-            case "n":
+            case 'n':
                 long seed = enterSEED();
                 WorldGenerator worldMap = new WorldGenerator(seed);
                 worldMap.playGame();
                 break;
-            case "l":
+            case 'l':
                 WorldGenerator saved = WorldGenerator.loadWorld();
                 saved.playGame();
                 break;
-            case "q":
+            case 'q':
                 System.exit(0);
             default:
         }
@@ -131,13 +131,12 @@ public class Game {
                 input = input.substring(1);
             }
             while (!input.equals("")) {
-                String action = String.valueOf(input.charAt(0));
-                if (action.equals('q')) {
+                char action = input.charAt(0);
+                if (action == 'q') {
+                    world.saveWorld();
                     return world.returnMap();
                 } else {
-                    if (world != null) {
-                        world.player.move(action);
-                    }
+                    world.player.move(action);
                     input = input.substring(1);
                 }
             }
