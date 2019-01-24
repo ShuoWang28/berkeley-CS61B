@@ -132,7 +132,7 @@ public class Game {
             }
             while (!input.equals("")) {
                 String action = String.valueOf(input.charAt(0));
-                if (action.equals("q")) {
+                if (action.equals('q')) {
                     return world.returnMap();
                 } else {
                     if (world != null) {
