@@ -1,11 +1,8 @@
 package byog.Core;
 
-import byog.SaveDemo.World;
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import edu.princeton.cs.introcs.StdDraw;
-
-import java.io.Serializable;
 
 import java.awt.*;
 
