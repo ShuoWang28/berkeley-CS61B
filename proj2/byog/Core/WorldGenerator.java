@@ -262,7 +262,7 @@ public class WorldGenerator implements Serializable {
                 case "d" :
                     moveHelper(new Position(loc.getPx() + 1, loc.getPy()));
                     break;
-                case "q" :
+                case ":q" :
                     saveWorld();
                     break;
                 default:
