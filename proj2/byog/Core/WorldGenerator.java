@@ -250,19 +250,19 @@ public class WorldGenerator implements Serializable {
         /** use keyboard to make a move */
         public void move(String action) {
             switch (action) {
-                case "W" :
+                case "w" :
                     moveHelper(new Position(loc.getPx(), loc.getPy() + 1));
                     break;
-                case "A" :
+                case "a" :
                     moveHelper(new Position(loc.getPx() - 1, loc.getPy()));
                     break;
-                case "S" :
+                case "s" :
                     moveHelper(new Position(loc.getPx(), loc.getPy() - 1));
                     break;
-                case "D" :
+                case "d" :
                     moveHelper(new Position(loc.getPx() + 1, loc.getPy()));
                     break;
-                case "Q" :
+                case "q" :
                     saveWorld();
                     break;
                 default:

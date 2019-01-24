@@ -51,16 +51,16 @@ public class Game {
 
     private void menuOption(String action) {
         switch (action) {
-            case "N":
+            case "n":
                 long seed = enterSEED();
                 WorldGenerator worldMap = new WorldGenerator(seed);
                 worldMap.playGame();
                 break;
-            case "L":
+            case "l":
                 WorldGenerator saved = WorldGenerator.loadWorld();
                 saved.playGame();
                 break;
-            case "Q":
+            case "q":
                 System.exit(0);
             default:
         }
@@ -117,7 +117,7 @@ public class Game {
         // drawn if the same inputs had been given to playWithKeyboard().
         WorldGenerator world = null;
         while (!input.equals("")) {
-            if (input.charAt(0) == 'N') {
+            if (input.charAt(0) == 'n') {
                 input = input.substring(1);
                 long seed = 0;
                 while (Character.isDigit(input.charAt(0))) {
@@ -126,13 +126,13 @@ public class Game {
                     input = input.substring(1);
                 }
                 world = new WorldGenerator(seed);
-            } else if (input.charAt(0) == 'L') {
+            } else if (input.charAt(0) == 'l') {
                 world = WorldGenerator.loadWorld();
                 input = input.substring(1);
             }
             while (!input.equals("")) {
                 String action = String.valueOf(input.charAt(0));
-                if (action.equals("Q")) {
+                if (action.equals("q")) {
                     return world.returnMap();
                 } else {
                     if (world != null) {
