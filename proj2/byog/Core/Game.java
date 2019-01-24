@@ -135,8 +135,10 @@ public class Game {
                 if (action.equals("Q")) {
                     return world.returnMap();
                 } else {
-                    world.player.move(action);
-                    input = input.substring(1);
+                    if (world != null) {
+                        world.player.move(action);
+                        input = input.substring(1);
+                    }
                 }
             }
         }
