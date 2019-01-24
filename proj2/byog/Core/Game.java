@@ -137,8 +137,8 @@ public class Game {
                 } else {
                     if (world != null) {
                         world.player.move(action);
-                        input = input.substring(1);
                     }
+                    input = input.substring(1);
                 }
             }
         }
