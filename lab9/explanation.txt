@@ -1,0 +1,12 @@
+
+    public V remove(K key) {
+        throw new UnsupportedOperationException();
+    }
+
+    //private V removeMin(Node p) {}
+
+
+    /** Removes the key-value entry for the specified key only if it is
+     *  currently mapped to the specified value.  Returns the VALUE removed,
+     *  null on failed removal.
+     **/
